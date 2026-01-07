@@ -146,6 +146,127 @@ Stack(
 )
 ```
 
+## 页面结构 Widget
+
+页面结构 Widget 是用于构建完整页面的基础框架，它们提供了标准的页面布局和功能。
+
+### Scaffold（Material Design 页面框架）
+
+`Scaffold` 是 Flutter 中用于实现 Material Design 页面布局的基础 Widget，它为页面提供标准的页面结构。
+
+**主要组件：**
+- `appBar` - 顶部应用栏（标题栏）
+- `body` - 页面主体内容区域
+- `floatingActionButton` - 悬浮操作按钮（可选）
+- `drawer` - 侧边抽屉菜单（可选）
+- `bottomNavigationBar` - 底部导航栏（可选）
+- `snackBar` - 底部消息提示（可选）
+
+**示例：**
+
+```dart
+Scaffold(
+  appBar: AppBar(
+    title: Text('我的应用'),
+  ),
+  body: Center(
+    child: Text('这是页面内容'),
+  ),
+  floatingActionButton: FloatingActionButton(
+    onPressed: () {},
+    child: Icon(Icons.add),
+  ),
+)
+```
+
+**在 Widget 树中的位置：**
+
+```
+MyApp
+ └── MaterialApp
+      └── Scaffold  ← 提供页面框架
+           ├── AppBar
+           └── Body
+                └── Column
+                     ├── Text
+                     └── Button
+```
+
+### CupertinoPageScaffold（iOS 风格页面框架）
+
+`CupertinoPageScaffold` 是 iOS 风格的页面结构，对应 Material Design 的 `Scaffold`。
+
+**主要属性：**
+- `navigationBar` - 顶部导航栏（对应 AppBar）
+- `child` - 页面主体内容
+
+**示例：**
+
+```dart
+CupertinoPageScaffold(
+  navigationBar: CupertinoNavigationBar(
+    middle: Text('我的应用'),
+  ),
+  child: Center(
+    child: Text('这是页面内容'),
+  ),
+)
+```
+
+### 其他页面结构 Widget
+
+#### SafeArea（安全区域处理）
+
+处理安全区域，避开刘海屏、状态栏等系统 UI：
+
+```dart
+SafeArea(
+  child: Scaffold(
+    body: Text('内容'),
+  ),
+)
+```
+
+#### Center（居中布局）
+
+将子 Widget 居中显示：
+
+```dart
+Center(
+  child: Text('居中文本'),
+)
+```
+
+#### Padding（内边距容器）
+
+为子 Widget 添加内边距：
+
+```dart
+Padding(
+  padding: EdgeInsets.all(16),
+  child: Text('有内边距的内容'),
+)
+```
+
+### 页面结构 Widget 对比
+
+| Widget | 用途 | 适用场景 |
+|--------|------|----------|
+| **Scaffold** | Material Design 页面框架 | Android 风格应用 |
+| **CupertinoPageScaffold** | iOS 风格页面框架 | iOS 风格应用 |
+| **Container** | 通用容器 | 自定义样式、布局 |
+| **SafeArea** | 安全区域处理 | 需要避开系统 UI |
+| **Center** | 居中布局 | 简单居中内容 |
+| **Padding** | 内边距 | 添加间距 |
+| **Stack** | 层叠布局 | 悬浮元素、遮罩 |
+
+### 使用建议
+
+- **Material 应用**：使用 `Scaffold` 作为页面根容器
+- **iOS 风格应用**：使用 `CupertinoPageScaffold` 作为页面根容器
+- **自定义布局**：使用 `Container` + 布局 Widget 组合
+- **需要避开系统 UI**：外层包裹 `SafeArea`
+
 ## 下一步
 
 学习更多布局技巧，查看 [布局系统](./05-布局系统.md)！
